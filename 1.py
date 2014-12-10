@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import os.path
+import csv
 
 ################
 """
@@ -155,6 +156,26 @@ for dpol in dbipolicy:
 print len(outs5)
 
 ############################done running the codes####################
+
+
+#############export relevant data to csv################
+
+
+for o in outs:
+	f=open(o,'r')
+	param={}
+	for j in range(1,141):
+        	next(f)
+	#f.read(23)
+	for line in f:
+        	#f.read()
+	        if line.split() :
+        	        param.update({line.split()[0]:line.split()[1]})
+	f.close()
+	print param
+	writer = csv.writer(open(o+".csv", 'wb'))
+	for key, value in param.items():
+		   writer.writerow([key, value])
 
 """
 for o in outs:
